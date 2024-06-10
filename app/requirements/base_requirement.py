@@ -12,7 +12,7 @@ class BaseRequirement:
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         ch.setFormatter(formatter)
         self.log.addHandler(ch)
-        self.log.info('Initializing BaseParser instance with name: %s', __name__ )
+        self.log.info('Initializing BaseRequirement instance with name: %s', __name__ )
 
     def is_valid_relationship(self, used_facts, relationship):
         """
