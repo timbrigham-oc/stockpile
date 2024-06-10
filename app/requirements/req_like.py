@@ -1,3 +1,4 @@
+import logging
 from plugins.stockpile.app.requirements.base_requirement import BaseRequirement
 
 
@@ -16,7 +17,11 @@ class Requirement(BaseRequirement):
             if self.enforcements['source'] == uf.trait:
                 for r in self._get_relationships(uf, relationships):
                     if self.is_valid([f for f in link.used if f != uf], r):
+                        # write output status to debug log  
+                        logging.debug('enforce returning True')
                         return True
+        # write output status to debug log  
+        logging.debug('enforce returning False')
         return False
 
     def is_valid(self, used_facts, relationship):

@@ -1,3 +1,4 @@
+import logging
 from typing import List
 
 from app.objects.c_operation import Operation
@@ -23,6 +24,8 @@ class Requirement(BaseRequirement):
             filtered_facts = [fact for fact in filtered_facts if self._in_relationship_substring(self.enforcements['edge'], fact.relationships)]
         fulfilled = len(filtered_facts) > 0
 
+        # write fulfilled output to debug logging 
+        logging.debug('enforce returning %s', fulfilled )
         return fulfilled
 
     def _in_relationship_substring(self, key: str, relationships: List[str]):

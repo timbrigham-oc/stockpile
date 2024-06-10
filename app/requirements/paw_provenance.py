@@ -1,3 +1,4 @@
+import logging
 from plugins.stockpile.app.requirements.base_requirement import BaseRequirement
 
 
@@ -12,5 +13,9 @@ class Requirement(BaseRequirement):
         """
         for uf in link.used:
             if self.enforcements['source'] == uf.trait and link.paw in uf.collected_by:
+                # write output status to debug log  
+                logging.debug('enforce returning False')
                 return True
+        # write output status to debug log  
+        logging.debug('enforce returning True')
         return False

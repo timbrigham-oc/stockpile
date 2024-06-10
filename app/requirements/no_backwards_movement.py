@@ -1,3 +1,4 @@
+import logging
 from plugins.stockpile.app.requirements.base_requirement import BaseRequirement
 
 
@@ -17,5 +18,9 @@ class Requirement(BaseRequirement):
             if self.enforcements['source'] == uf.trait:
                 target_name = uf.value.split('.')[0].lower()
                 if target_name in all_hostnames or any(target_name in h for h in all_hostnames):
+                    # write output status to debug log  
+                    logging.debug('enforce returning False')
                     return False
+        # write output status to debug log  
+        logging.debug('enforce returning True')
         return True

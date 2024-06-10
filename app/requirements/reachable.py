@@ -1,3 +1,4 @@
+import logging 
 from plugins.stockpile.app.requirements.base_requirement import BaseRequirement
 
 
@@ -18,5 +19,9 @@ class Requirement(BaseRequirement):
                     host = links[0].host
                     if r.source.value == uf.value:
                         if link.host == host:  # running on the host that created this relationship
+                            # write output status to debug log  
+                            logging.debug('enforce returning True')
                             return True
+        # write output status to debug log  
+        logging.debug('enforce returning False')
         return False

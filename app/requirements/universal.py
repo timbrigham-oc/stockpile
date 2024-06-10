@@ -1,3 +1,4 @@
+import logging
 from typing import List
 
 from app.objects.c_operation import Operation
@@ -21,7 +22,8 @@ class Requirement(BaseRequirement):
                                                     link.paw in fact.collected_by]
         matching_edges = [fact for fact in matching_facts if self._in_relationship_substring(self.enforcements['edge'], fact.relationships)]
         fulfilled = len(matching_facts) == len(matching_edges)
-
+        # write fulfilled output to debug logging 
+        logging.debug('enforce returning %s', fulfilled )
         return fulfilled
 
     def _in_relationship_substring(self, key: str, relationships: List[str]):
